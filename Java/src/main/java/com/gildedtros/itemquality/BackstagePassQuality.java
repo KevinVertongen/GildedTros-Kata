@@ -1,5 +1,8 @@
 package com.gildedtros.itemquality;
 
+import static com.gildedtros.configuration.InventoryConfig.isQualityWithinUpperLimit;
+import static com.gildedtros.configuration.InventoryConfig.isSellDatePassed;
+
 public class BackstagePassQuality implements ItemQualityStrategy {
 
     /**
@@ -28,11 +31,7 @@ public class BackstagePassQuality implements ItemQualityStrategy {
     }
 
     private int increaseQuality(final int quality) {
-        return isWithinLimit(quality) ? quality + 1 : quality;
-    }
-
-    private boolean isWithinLimit(final int quality) {
-        return quality < 50;
+        return isQualityWithinUpperLimit(quality) ? quality + 1 : quality;
     }
 
     private boolean isSellDate10OrLess(final int sellDate) {
@@ -41,9 +40,5 @@ public class BackstagePassQuality implements ItemQualityStrategy {
 
     private boolean isSellDate5OrLess(final int sellDate) {
         return sellDate <= 5;
-    }
-
-    private boolean isSellDatePassed(final int sellDate) {
-        return sellDate < 0;
     }
 }

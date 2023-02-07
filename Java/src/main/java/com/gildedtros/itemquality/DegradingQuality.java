@@ -1,5 +1,8 @@
 package com.gildedtros.itemquality;
 
+import static com.gildedtros.configuration.InventoryConfig.isQualityWithinLowerLimit;
+import static com.gildedtros.configuration.InventoryConfig.isSellDatePassed;
+
 public class DegradingQuality implements ItemQualityStrategy {
 
     /**
@@ -17,14 +20,6 @@ public class DegradingQuality implements ItemQualityStrategy {
     }
 
     private int decreaseQuality(final int quality) {
-        return isWithinLimit(quality) ? quality - 1 : quality;
-    }
-
-    private boolean isWithinLimit(final int quality) {
-        return quality > 0;
-    }
-
-    private boolean isSellDatePassed(final int sellDate) {
-        return sellDate < 0;
+        return isQualityWithinLowerLimit(quality) ? quality - 1 : quality;
     }
 }
