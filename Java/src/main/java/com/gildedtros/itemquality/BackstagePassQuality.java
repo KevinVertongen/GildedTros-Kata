@@ -14,6 +14,36 @@ public class BackstagePassQuality implements ItemQualityStrategy {
      */
     @Override
     public int calculateQuality(final int quality, final int sellIn) {
-        return 0;
+        int updatedQuality = increaseQuality(quality);
+
+        if (isSellDate10OrLess(sellIn)) {
+            updatedQuality = increaseQuality(updatedQuality);
+        }
+
+        if (isSellDate5OrLess(sellIn)) {
+            updatedQuality = increaseQuality(updatedQuality);
+        }
+
+        return isSellDatePassed(sellIn) ? 0 : updatedQuality;
+    }
+
+    private int increaseQuality(final int quality) {
+        return isWithinLimit(quality) ? quality + 1 : quality;
+    }
+
+    private boolean isWithinLimit(final int quality) {
+        return quality < 50;
+    }
+
+    private boolean isSellDate10OrLess(final int sellDate) {
+        return sellDate <= 10;
+    }
+
+    private boolean isSellDate5OrLess(final int sellDate) {
+        return sellDate <= 5;
+    }
+
+    private boolean isSellDatePassed(final int sellDate) {
+        return sellDate < 0;
     }
 }

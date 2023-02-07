@@ -12,6 +12,19 @@ public class DegradingQuality implements ItemQualityStrategy {
      */
     @Override
     public int calculateQuality(final int quality, final int sellIn) {
-        return 0;
+        final int updatedQuality = decreaseQuality(quality);
+        return isSellDatePassed(sellIn) ? decreaseQuality(updatedQuality) : updatedQuality;
+    }
+
+    private int decreaseQuality(final int quality) {
+        return isWithinLimit(quality) ? quality - 1 : quality;
+    }
+
+    private boolean isWithinLimit(final int quality) {
+        return quality > 0;
+    }
+
+    private boolean isSellDatePassed(final int sellDate) {
+        return sellDate < 0;
     }
 }
