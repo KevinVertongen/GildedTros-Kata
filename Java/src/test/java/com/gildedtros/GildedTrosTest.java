@@ -30,6 +30,39 @@ class GildedTrosTest {
     }
 
     @Test
+    void givenDegradingItem_WithSellInZero_WhenUpgradeQuality_ThenQualityDecreasesByTwo() {
+        Item[] items = new Item[]{new Item("Ring of Cleansening Code", 0, 10)};
+
+        GildedTros app = new GildedTros(items);
+
+        app.updateQuality();
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    void givenDegradingItem_WithNegativeSellIn_WhenUpgradeQuality_ThenQualityDecreasesByTwo() {
+        Item[] items = new Item[]{new Item("Ring of Cleansening Code", -2, 6)};
+
+        GildedTros app = new GildedTros(items);
+
+        app.updateQuality();
+        assertEquals(-3, app.items[0].sellIn);
+        assertEquals(4, app.items[0].quality);
+    }
+
+    @Test
+    void givenDegradingItem_WithQualityZero_WhenUpgradeQuality_ThenQualityRemainsZero() {
+        Item[] items = new Item[]{new Item("Ring of Cleansening Code", -5, 0)};
+
+        GildedTros app = new GildedTros(items);
+
+        app.updateQuality();
+        assertEquals(-6, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
     void givenImprovingItem_WithPositiveSellIn_WhenUpgradeQuality_ThenQualityIncreases() {
         Item[] items = new Item[]{new Item("Good Wine", 2, 0)};
 
@@ -38,6 +71,39 @@ class GildedTrosTest {
         app.updateQuality();
         assertEquals(1, app.items[0].sellIn);
         assertEquals(1, app.items[0].quality);
+    }
+
+    @Test
+    void givenImprovingItem_WithSellInZero_WhenUpgradeQuality_ThenQualityIncreasesByTwo() {
+        Item[] items = new Item[]{new Item("Good Wine", 2, 0)};
+
+        GildedTros app = new GildedTros(items);
+
+        app.updateQuality();
+        assertEquals(1, app.items[0].sellIn);
+        assertEquals(1, app.items[0].quality);
+    }
+
+    @Test
+    void givenImprovingItem_WithNegativeSellIn_WhenUpgradeQuality_ThenQualityIncreasesByTwo() {
+        Item[] items = new Item[]{new Item("Good Wine", -2, 6)};
+
+        GildedTros app = new GildedTros(items);
+
+        app.updateQuality();
+        assertEquals(-3, app.items[0].sellIn);
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    void givenImprovingItem_WithQuality50_WhenUpgradeQuality_ThenQualityNotOver50() {
+        Item[] items = new Item[]{new Item("Good Wine", -27, 50)};
+
+        GildedTros app = new GildedTros(items);
+
+        app.updateQuality();
+        assertEquals(-28, app.items[0].sellIn);
+        assertEquals(50, app.items[0].quality);
     }
 
     @Test
@@ -93,6 +159,28 @@ class GildedTrosTest {
         app.updateQuality();
         assertEquals(4, app.items[0].sellIn);
         assertEquals(48, app.items[0].quality);
+    }
+
+    @Test
+    void givenBackStagePass_WithSellInZero_WhenUpgradeQuality_ThenQualityDropsToZero() {
+        Item[] items = new Item[]{new Item("Backstage passes for HAXX", 0, 50)};
+
+        GildedTros app = new GildedTros(items);
+
+        app.updateQuality();
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
+    void givenBackStagePass_WithNegativeSellIn_WhenUpgradeQuality_ThenQualityRemainsZero() {
+        Item[] items = new Item[]{new Item("Backstage passes for HAXX", 0, 50)};
+
+        GildedTros app = new GildedTros(items);
+
+        app.updateQuality();
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
     }
 
     @Test
