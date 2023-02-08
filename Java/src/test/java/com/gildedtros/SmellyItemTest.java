@@ -18,6 +18,17 @@ class SmellyItemTest {
     }
 
     @Test
+    void givenPositiveSellIn_AndQualityLessThanTwo_WhenUpgradeQuality_ThenQualityDecreasesToZero() {
+        Item[] items = new Item[]{new Item("Duplicate Code", 3, 1)};
+
+        GildedTros app = new GildedTros(items);
+
+        app.updateQuality();
+        assertEquals(2, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
     void givenSellInZero_WhenUpgradeQuality_ThenQualityDecreasesByFour() {
         Item[] items = new Item[]{new Item("Long Methods", 0, 6)};
 
@@ -31,6 +42,17 @@ class SmellyItemTest {
     @Test
     void givenNegativeSellIn_WhenUpgradeQuality_ThenQualityDecreasesByFour() {
         Item[] items = new Item[]{new Item("Ugly Variable Names", -2, 4)};
+
+        GildedTros app = new GildedTros(items);
+
+        app.updateQuality();
+        assertEquals(-3, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
+    void givenNegativeSellIn_AndQualityLessThanFour_WhenUpgradeQuality_ThenQualityDecreasesToZero() {
+        Item[] items = new Item[]{new Item("Ugly Variable Names", -2, 3)};
 
         GildedTros app = new GildedTros(items);
 
