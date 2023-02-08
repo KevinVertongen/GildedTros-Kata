@@ -20,12 +20,10 @@ class GildedTros {
                 continue;
             }
 
-            final ItemQualityStrategy itemQuality = ItemQualityFactory.getItemQualityStrategy(itemName);
-            final int currentQuality = item.quality;
-            final int currentSellIn = item.sellIn;
+            item.sellIn = item.sellIn - 1;
 
-            item.quality = itemQuality.calculateQuality(currentQuality, currentSellIn);
-            item.sellIn = currentSellIn - 1;
+            final ItemQualityStrategy itemQuality = ItemQualityFactory.getItemQualityStrategy(itemName);
+            item.quality = itemQuality.calculateQuality(item.quality, item.sellIn);
         }
     }
 }
