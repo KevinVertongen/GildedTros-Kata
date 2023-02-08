@@ -16,6 +16,7 @@ class GildedTros {
         for (final Item item : items) {
             final String itemName = item.name;
 
+            // a legendary item never has to be sold or decreases in Quality
             if (isLegendaryItem(itemName)) {
                 continue;
             }
