@@ -6,6 +6,12 @@ import static com.gildedtros.configuration.InventoryConfig.isSellDatePassed;
 public class BackstagePassQuality implements ItemQualityStrategy {
 
     /**
+     * Package private, client should use the {@link ItemQualityFactory} to get a concrete {@link ItemQualityStrategy}.
+     */
+    BackstagePassQuality() {
+    }
+
+    /**
      * Calculate the quality of an item by following rules:
      * <ul>
      *     <li>Quality increases by 1 when there are more then 10 days.</li>
