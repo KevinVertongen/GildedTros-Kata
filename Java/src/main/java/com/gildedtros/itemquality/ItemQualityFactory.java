@@ -17,14 +17,14 @@ public final class ItemQualityFactory {
      * @return the appropriate {@link ItemQualityStrategy} for the item.
      */
     public static ItemQualityStrategy getItemQualityStrategy(final String itemName) {
-       if (isBackstagePass(itemName)) {
-           return new BackstagePassQuality();
-       } else if (isImprovingItem(itemName)) {
-           return new ImprovingQuality();
-       } else if (isLegendaryItem(itemName)) {
-           return null; // FIXME
-       } else {
-           return new DegradingQuality();
-       }
+        if (isBackstagePass(itemName)) {
+            return new BackstagePassQuality();
+        } else if (isImprovingItem(itemName)) {
+            return new ImprovingQuality();
+        } else if (isLegendaryItem(itemName)) {
+            return new LegendaryQuality();
+        } else {
+            return new DegradingQuality();
+        }
     }
 }
