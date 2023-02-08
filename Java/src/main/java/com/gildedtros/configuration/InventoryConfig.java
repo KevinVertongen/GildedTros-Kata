@@ -13,6 +13,7 @@ public final class InventoryConfig {
     private static final List<String> IMPROVING_ITEMS = List.of("Good Wine");
     private static final List<String> LEGENDARY_ITEMS = List.of("B-DAWG Keychain");
     private static final List<String> BACKSTAGE_PASS_ITEMS = List.of("Backstage passes for Re:Factor", "Backstage passes for HAXX");
+    private static final List<String> SMELLY_ITEMS = List.of("Duplicate Code", "Long Methods", "Ugly Variable Names");
 
     public static int getQualityOfLegendaryItem() {
         return QUALITY_LEGENDARY;
@@ -40,5 +41,9 @@ public final class InventoryConfig {
 
     public static boolean isBackstagePass(final String itemName) {
         return BACKSTAGE_PASS_ITEMS.contains(itemName);
+    }
+
+    public static boolean isSmellyItem(final String itemName) {
+        return SMELLY_ITEMS.contains(itemName);
     }
 }
