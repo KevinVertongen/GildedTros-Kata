@@ -8,6 +8,7 @@ public final class ItemQualityFactory {
     private static final DegradingQuality DEGRADING_QUALITY = new DegradingQuality();
     private static final ImprovingQuality IMPROVING_QUALITY = new ImprovingQuality();
     private static final LegendaryQuality LEGENDARY_QUALITY = new LegendaryQuality();
+    private static final SmellyQuality SMELLY_QUALITY = new SmellyQuality();
 
     /*
      * No need instantiate a Static Factory
@@ -28,6 +29,8 @@ public final class ItemQualityFactory {
             return IMPROVING_QUALITY;
         } else if (isLegendaryItem(itemName)) {
             return LEGENDARY_QUALITY;
+        } else if (isSmellyItem(itemName)) {
+            return SMELLY_QUALITY;
         } else {
             return DEGRADING_QUALITY;
         }
