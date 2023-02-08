@@ -4,6 +4,11 @@ import static com.gildedtros.configuration.InventoryConfig.*;
 
 public final class ItemQualityFactory {
 
+    private static final BackstagePassQuality BACKSTAGE_PASS_QUALITY = new BackstagePassQuality();
+    private static final DegradingQuality DEGRADING_QUALITY = new DegradingQuality();
+    private static final ImprovingQuality IMPROVING_QUALITY = new ImprovingQuality();
+    private static final LegendaryQuality LEGENDARY_QUALITY = new LegendaryQuality();
+
     /*
      * No need instantiate a Static Factory
      */
@@ -18,13 +23,13 @@ public final class ItemQualityFactory {
      */
     public static ItemQualityStrategy getItemQualityStrategy(final String itemName) {
         if (isBackstagePass(itemName)) {
-            return new BackstagePassQuality();
+            return BACKSTAGE_PASS_QUALITY;
         } else if (isImprovingItem(itemName)) {
-            return new ImprovingQuality();
+            return IMPROVING_QUALITY;
         } else if (isLegendaryItem(itemName)) {
-            return new LegendaryQuality();
+            return LEGENDARY_QUALITY;
         } else {
-            return new DegradingQuality();
+            return DEGRADING_QUALITY;
         }
     }
 }
